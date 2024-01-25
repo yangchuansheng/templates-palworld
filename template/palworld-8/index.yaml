@@ -1,7 +1,7 @@
 apiVersion: app.sealos.io/v1
 kind: Template
 metadata:
-  name: palworld-4
+  name: palworld-8
 spec:
   title: '幻兽帕鲁私服8人房'
   url: 'https://github.com/thijsvanloef/palworld-server-docker'
@@ -14,7 +14,7 @@ spec:
   defaults:
     app_name:
       type: string
-      value: palworld-4-${{ random(8) }}
+      value: palworld-8-${{ random(8) }}
   inputs:
     ADMIN_PASSWORD:
       description: "Secure administration access in the server with a password"
@@ -86,7 +86,7 @@ spec:
             - name: PORT
               value: "8211"
             - name: PLAYERS
-              value: "4"
+              value: "8"
             - name: MULTITHREADING
               value: "true"
             - name: RCON_ENABLED
