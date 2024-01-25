@@ -63,8 +63,12 @@ spec:
           image: alpine
           # Give `grafana` user (id 472) permissions a mounted volume
           # https://github.com/grafana/grafana-docker/blob/master/Dockerfile
-          command: ["/bin/sh", "-c", "chown -R 1000:1000 /palworld; chmod -R 770 /palworld"]
+          command: ["/bin/sh", "-c", "chown -R 1000:1000 /palworld; chmod -R 770 /palworld; if [ -d /palworld/Pal/Saved/Config/LinuxServer ]; then cp /tmp/PalWorldSettings.ini /palworld/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini; fi"]
+          imagePullPolicy: IfNotPresent
           volumeMounts:
+            - name: vn-tmpvn-palworldsettingsvn-ini
+              mountPath: /tmp/PalWorldSettings.ini
+              subPath: ./tmp/PalWorldSettings.ini
             - name: vn-palworld
               mountPath: /palworld
       containers:
@@ -118,8 +122,18 @@ spec:
               protocol: UDP
           imagePullPolicy: IfNotPresent
           volumeMounts:
+            - name: vn-tmpvn-palworldsettingsvn-ini
+              mountPath: /tmp/PalWorldSettings.ini
+              subPath: ./tmp/PalWorldSettings.ini
             - name: vn-palworld
               mountPath: /palworld
+      volumes:
+        - name: vn-tmpvn-palworldsettingsvn-ini
+          configMap:
+            name: ${{ defaults.app_name }}
+            items:
+              - key: vn-tmpvn-palworldsettingsvn-ini
+                path: ./tmp/PalWorldSettings.ini
   volumeClaimTemplates:
     - metadata:
         annotations:
@@ -132,6 +146,16 @@ spec:
         resources:
           requests:
             storage: 10Gi
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ${{ defaults.app_name }}
+data:
+  vn-tmpvn-palworldsettingsvn-ini: |-
+    [/Script/Pal.PalGameWorldSettings]
+    OptionSettings=(Difficulty=None,DayTimeSpeedRate=1.000000,NightTimeSpeedRate=1.000000,ExpRate=1.000000,PalCaptureRate=1.000000,PalSpawnNumRate=1.000000,PalDamageRateAttack=1.000000,PalDamageRateDefense=1.000000,PlayerDamageRateAttack=1.000000,PlayerDamageRateDefense=1.000000,PlayerStomachDecreaceRate=1.000000,PlayerStaminaDecreaceRate=1.000000,PlayerAutoHPRegeneRate=1.000000,PlayerAutoHpRegeneRateInSleep=1.000000,PalStomachDecreaceRate=1.000000,PalStaminaDecreaceRate=1.000000,PalAutoHPRegeneRate=1.000000,PalAutoHpRegeneRateInSleep=1.000000,BuildObjectDamageRate=1.000000,BuildObjectDeteriorationDamageRate=1.000000,CollectionDropRate=1.000000,CollectionObjectHpRate=1.000000,CollectionObjectRespawnSpeedRate=1.000000,EnemyDropItemRate=1.000000,DeathPenalty=All,bEnablePlayerToPlayerDamage=False,bEnableFriendlyFire=False,bEnableInvaderEnemy=True,bActiveUNKO=False,bEnableAimAssistPad=True,bEnableAimAssistKeyboard=False,DropItemMaxNum=3000,DropItemMaxNum_UNKO=100,BaseCampMaxNum=128,BaseCampWorkerMaxNum=15,DropItemAliveMaxHours=1.000000,bAutoResetGuildNoOnlinePlayers=False,AutoResetGuildTimeNoOnlinePlayers=72.000000,GuildPlayerMaxNum=20,PalEggDefaultHatchingTime=72.000000,WorkSpeedRate=1.000000,bIsMultiplay=False,bIsPvP=False,bCanPickupOtherGuildDeathPenaltyDrop=False,bEnableNonLoginPenalty=True,bEnableFastTravel=True,bIsStartLocationSelectByMap=True,bExistPlayerAfterLogout=False,bEnableDefenseOtherGuildPlayer=False,CoopPlayerMaxNum=4,ServerPlayerMaxNum=32,ServerName="Default Palworld Server",ServerDescription="",AdminPassword="",ServerPassword="",PublicPort=8211,PublicIP="",RCONEnabled=true,RCONPort=25575,Region="",bUseAuth=True,BanListURL="https://api.palworldgame.com/api/banlist.txt")
 
 ---
 apiVersion: v1
