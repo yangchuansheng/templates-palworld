@@ -1,20 +1,20 @@
 apiVersion: app.sealos.io/v1
 kind: Template
 metadata:
-  name: palworld-8
+  name: palworld
 spec:
-  title: '幻兽帕鲁私服8人房'
+  title: '幻兽帕鲁私服'
   url: 'https://github.com/thijsvanloef/palworld-server-docker'
   gitRepo: 'https://github.com/thijsvanloef/palworld-server-docker'
   author: 'Sealos'
-  description: '该私服最多可容纳 8 个玩家流畅玩耍'
+  description: '该私服默认最多可容纳 4~6 个玩家流畅玩耍，如需支撑更多玩家则需要调大 CPU 和内存'
   readme: 'https://raw.githubusercontent.com/thijsvanloef/palworld-server-docker/main/README.md'
   icon: 'https://raw.githubusercontent.com/labring-actions/templates/main/template/palworld/logo.jpg'
   templateType: inline
   defaults:
     app_name:
       type: string
-      value: palworld-8-${{ random(8) }}
+      value: palworld-${{ random(8) }}
   inputs:
     ADMIN_PASSWORD:
       description: "Secure administration access in the server with a password"
@@ -86,7 +86,7 @@ spec:
             - name: PORT
               value: "8211"
             - name: PLAYERS
-              value: "8"
+              value: "32"
             - name: MULTITHREADING
               value: "true"
             - name: RCON_ENABLED
@@ -103,12 +103,12 @@ spec:
               value: ${{ inputs.SERVER_NAME }}
           resources:
             requests:
-              cpu: 1500m
-              memory: 10240Mi
+              cpu: 1000m
+              memory: 8192Mi
               ephemeral-storage: 400Mi
             limits:
-              cpu: 6000m
-              memory: 20480Mi
+              cpu: 4000m
+              memory: 16384Mi
               ephemeral-storage: 400Mi
           ports:
             - containerPort: 8211
