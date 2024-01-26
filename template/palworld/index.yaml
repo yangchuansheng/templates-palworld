@@ -63,7 +63,7 @@ spec:
           image: alpine
           # Give `grafana` user (id 472) permissions a mounted volume
           # https://github.com/grafana/grafana-docker/blob/master/Dockerfile
-          command: ["/bin/sh", "-c", "chown -R 1000:1000 /palworld; chmod -R 770 /palworld; if [ -d /palworld/Pal/Saved/Config/LinuxServer ]; then cp /tmp/PalWorldSettings.ini /palworld/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini; fi; echo -e '\n[/Script/OnlineSubsystemUtils.IpNetDriver]\nNetServerMaxTickRate =90' >> /palworld/Pal/Saved/Config/LinuxServer/Engine.ini"]
+          command: ["/bin/sh", "-c", "chown -R 1000:1000 /palworld; chmod -R 770 /palworld; if [ -d /palworld/Pal/Saved/Config/LinuxServer ]; then cp /tmp/PalWorldSettings.ini /palworld/Pal/Saved/Config/LinuxServer/PalWorldSettings.ini; echo -e '\n[/Script/OnlineSubsystemUtils.IpNetDriver]\nNetServerMaxTickRate =90' >> /palworld/Pal/Saved/Config/LinuxServer/Engine.ini; fi"]
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: vn-tmpvn-palworldsettingsvn-ini
