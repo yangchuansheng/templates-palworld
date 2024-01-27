@@ -1,17 +1,3 @@
-> **《幻兽帕鲁》**(日语：パルワールド，英语：**Palworld**) 是由日本开发商 Pocket Pair 推出的一款动作冒险生存游戏。游戏设定在一个由类似动物的生物 “帕鲁” 居住的开放世界中。玩家可以战斗并捕捉帕鲁，然后用它们来进行战斗、建造、做农活，工业生产等。《幻兽帕鲁》可单人游玩，也支持最多 32 名玩家在一个服务器上进行网络游戏。该游戏于2021年首次公布，于2024年1月11日通过抢先体验在 Windows、Xbox One 和 Xbox Series X/S 上发布。
->
-> 引用自维基百科：**https://zh.wikipedia.org/zh-cn/%E5%B9%BB%E7%8D%B8%E5%B8%95%E9%AD%AF**
-
-最近这款《幻兽帕鲁》已经变成了市场上热度最高的游戏，这款游戏发售后仅 8 小时就突破了 100 万销售额，三天后销量激增至 400 万份，太强了！
-
-更强的是，它在 Steam 平台创下了 112 万同时在线玩家的记录，这个在线数字在付费游戏中闻所未闻。可以预见这款游戏要大火 🔥
-
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2024-01-23-19-01-uneq8j.jpg)
-
-随着游戏越来越火爆，官方服务器逐渐开始出现不稳定的现象，时不时还会出现卡顿闪退的情况。既然这样，**那我们干脆自己建一个私服（专用服务器）吧！**
-
-别慌，这篇教程不是什么复杂的万字长文，**非常简单，全程只需要点鼠标，我昨天去菜市场买菜教了一下菜市场的大妈，大妈当场就学会了**👀
-
 ## 幻兽帕鲁私服部署
 
 直接打开这个链接：
@@ -47,6 +33,30 @@
 那么你这个私服的地址就是 `hzh.sealos.run:31039`
 
 大功告成，接下来开始登录游戏！
+
+## 修改文件管理器密码
+
+**这一步非常重要！！！为了防止别人能访问你的文件管理器，一定要修改密码！！！**
+
+在「应用管理」界面进入 palworld 应用的详情页面，然后点击我用红框框出来的外网地址：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-09-6edDbv.png)
+
+打开文件管理器后，输入用户名密码登录，默认的用户名是 `admin`，默认密码也是 `admin`。登录之后，先点击 "Settings":
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-12-LSucr2.jpg)
+
+然后点击 "User management"，再点击 admin 最右边的铅笔按钮：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-26-LtKvG4.jpg)
+
+在 "Password" 输入框中填入你的新密码，然后将 Language 的值改为「中文（简体）」：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-27-aWTOJm.jpg)
+
+最后点击右下角的 save 即可。
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-27-bgXwUj.jpg)
 
 ## 登录游戏
 
@@ -163,6 +173,56 @@ Sealos 修改应用环境变量非常简单，只需要在应用详情页面点�
 ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-25-15-47-DaIwJ6.jpg)
 
 **暂停之后 CPU 和内存均不收费，但是存储还是要收费的，因为存储一直占用在那边嘛~**
+
+## 导出存档
+
+在「应用管理」界面进入 palworld 应用的详情页面，然后点击我用红框框出来的外网地址：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-09-6edDbv.png)
+
+双击我用红框框出来的 `Pal` 文件夹进入 `Pal` 文件夹：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-26-Ih0nOf.jpg)
+
+然后单击我用红框框出来的 `Saved` 文件，再点击上方的下载图标：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-24-RHzR99.jpg)
+
+点击我用红框框出来的 zip 即可将游戏存档压缩并下载到本地：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-25-Uuw8xg.jpg)
+
+## 导入存档
+
+将之前导出的存档解压成一个目录：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-29-SvOHiP.jpg)
+
+在你的新私服「应用管理」界面进入 palworld 应用的详情页面，然后点击我用红框框出来的外网地址：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-09-6edDbv.png)
+
+双击我用红框框出来的 `Pal` 文件夹进入 `Pal` 文件夹：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-26-Ih0nOf.jpg)
+
+点击上传按钮：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-30-3ZrTIz.jpg)
+
+选择上传文件夹：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-31-KON4x0.jpg)
+
+然后选择本地的 Saved 目录进行上传，然后会出来一个弹窗，你只需要点击「替换」：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-33-1XMgM3.jpg)
+
+上传完成后，回到「应用管理」的 palworld 应用详情页面，点击右上角的「重启」：
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-27-16-35-8wt5Zp.jpg)
+
+等待应用重启成功即可。
 
 ## FAQ
 
