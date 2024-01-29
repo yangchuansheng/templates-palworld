@@ -194,7 +194,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ${{ defaults.app_name }}
+  name: ${{ defaults.app_name }}-external
   labels:
     cloud.sealos.io/app-deploy-manager: ${{ defaults.app_name }}
 spec:
@@ -204,6 +204,18 @@ spec:
       port: 8211
       targetPort: 8211
       name: game
+  selector:
+    app: ${{ defaults.app_name }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${{ defaults.app_name }}
+  labels:
+    cloud.sealos.io/app-deploy-manager: ${{ defaults.app_name }}
+spec:
+  ports:
     - protocol: UDP
       port: 27015
       targetPort: 27015
