@@ -51,7 +51,7 @@ kind: StatefulSet
 metadata:
   name: ${{ defaults.app_name }}
   annotations:
-    originImageName: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld_recover:20240201063938
+    originImageName: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld_recover:20240202160220
     deploy.cloud.sealos.io/minReplicas: '1'
     deploy.cloud.sealos.io/maxReplicas: '1'
   labels:
@@ -86,7 +86,7 @@ spec:
               mountPath: /palworld
       containers:
         - name: ${{ defaults.app_name }}
-          image: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld_recover:20240201063938
+          image: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld_recover:20240202160220
           env:
             - name: ServerIP
               valueFrom:
