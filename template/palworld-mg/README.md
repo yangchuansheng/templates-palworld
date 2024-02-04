@@ -1,4 +1,6 @@
-通过可视化界面管理幻兽帕鲁 / PalWorld 专用服务器，基于 RCON 实现。
+通过可视化界面管理幻兽帕鲁 / PalWorld 专用服务器，基于 SAV 存档文件解析及 RCON 实现。
+
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-02-04-12-53-Z5ir5z.jpg)
 
 需要填写两个参数：
 

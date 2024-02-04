@@ -54,7 +54,7 @@ kind: Deployment
 metadata:
   name: ${{ defaults.app_name }}
   annotations:
-    originImageName: yangchuansheng/palworld-server-tool@sha256:d47712aebbfa80778995b12a87cb5bdfb8db9b118ce65f64614a0a9352f16c09
+    originImageName: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld-server-tool:2024-02-04
     deploy.cloud.sealos.io/minReplicas: '1'
     deploy.cloud.sealos.io/maxReplicas: '1'
   labels:
@@ -78,23 +78,33 @@ spec:
     spec:
       containers:
         - name: ${{ defaults.app_name }}
-          image: yangchuansheng/palworld-server-tool@sha256:d47712aebbfa80778995b12a87cb5bdfb8db9b118ce65f64614a0a9352f16c09
+          image: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld-server-tool:2024-02-04
           env:
-            - name: RCON_HOST
-              value: ${{ inputs.APP_NAME }}-0.${{ inputs.APP_NAME }}
-            - name: RCON_PASSWORD
+            - name: WEB__PASSWORD
               value: ${{ inputs.ADMIN_PASSWORD }}
+            - name: RCON__ADDRESS
+              value: ${{ inputs.APP_NAME }}-0.${{ inputs.APP_NAME }}:25575
+            - name: RCON__PASSWORD
+              value: ${{ inputs.ADMIN_PASSWORD }}
+            - name: SAVE__PATH
+              value: k8s://${{ inputs.APP_NAME }}-0/${{ inputs.APP_NAME }}:/palworld/Pal/Saved
+            - name: SAVE__SYNC_INTERVAL
+              value: '60'
           resources:
             requests:
-              cpu: 10m
-              memory: 6Mi
+              cpu: 200m
+              memory: 409Mi
             limits:
-              cpu: 100m
-              memory: 64Mi
+              cpu: 2000m
+              memory: 4096Mi
           ports:
             - containerPort: 8080
           imagePullPolicy: IfNotPresent
           volumeMounts: []
+      securityContext:
+        runAsUser: 0
+      serviceAccountName: ${{ SEALOS_SERVICE_ACCOUNT }}
+      serviceAccount:  ${{ SEALOS_SERVICE_ACCOUNT }}
       volumes: []
 
 ---
