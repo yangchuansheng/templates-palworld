@@ -54,7 +54,7 @@ kind: Deployment
 metadata:
   name: ${{ defaults.app_name }}
   annotations:
-    originImageName: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld-server-tool:2024-02-04
+    originImageName: registry.cn-hangzhou.aliyuncs.com/bxy4543/palworld-server-tool:2024-02-18
     deploy.cloud.sealos.io/minReplicas: '1'
     deploy.cloud.sealos.io/maxReplicas: '1'
   labels:
@@ -78,7 +78,7 @@ spec:
     spec:
       containers:
         - name: ${{ defaults.app_name }}
-          image: registry-vpc.cn-hangzhou.aliyuncs.com/bxy4543/palworld-server-tool:2024-02-04
+          image: registry.cn-hangzhou.aliyuncs.com/bxy4543/palworld-server-tool:2024-02-18
           env:
             - name: WEB__PASSWORD
               value: ${{ inputs.ADMIN_PASSWORD }}
