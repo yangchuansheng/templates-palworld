@@ -199,7 +199,7 @@ spec:
             - /bin/sh
             - -c
             - |
-              until kubectl exec ${{ defaults.app_name }}-0 -c e${{ defaults.app_name }} -- ls /opt/enshrouded-data/game_ready &>/dev/null; do sleep 1; done
+              until kubectl exec ${{ defaults.app_name }}-0 -c e${{ defaults.app_name }} -- ls /opt/enshrouded/game_ready &>/dev/null; do sleep 1; done
               kubectl rollout restart statefulset ${{ defaults.app_name }}
       restartPolicy: Never
       serviceAccountName: ${{ SEALOS_SERVICE_ACCOUNT }}
