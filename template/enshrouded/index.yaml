@@ -57,7 +57,7 @@ kind: StatefulSet
 metadata:
   name: ${{ defaults.app_name }}
   annotations:
-    originImageName: registry.cn-hangzhou.aliyuncs.com/luanshaotong/enshrouded:dev
+    originImageName: registry.cn-hangzhou.aliyuncs.com/luanshaotong/enshrouded:v0.3
     deploy.cloud.sealos.io/minReplicas: '1'
     deploy.cloud.sealos.io/maxReplicas: '1'
   labels:
@@ -126,7 +126,7 @@ spec:
               mountPath: /opt/enshrouded
       containers:
         - name: ${{ defaults.app_name }}
-          image: registry.cn-hangzhou.aliyuncs.com/luanshaotong/enshrouded:dev
+          image: registry.cn-hangzhou.aliyuncs.com/luanshaotong/enshrouded:v0.3
           env:
             - name: SERVER_IP
               valueFrom:
@@ -199,7 +199,7 @@ spec:
             - /bin/sh
             - -c
             - |
-              until kubectl exec ${{ defaults.app_name }}-0 -c e${{ defaults.app_name }} -- ls /opt/enshrouded/server/enshrouded_server.json &>/dev/null; do sleep 1; done
+              until kubectl exec ${{ defaults.app_name }}-0 -c e${{ defaults.app_name }} -- ls /opt/enshrouded-data/game_ready &>/dev/null; do sleep 1; done
               kubectl rollout restart statefulset ${{ defaults.app_name }}
       restartPolicy: Never
       serviceAccountName: ${{ SEALOS_SERVICE_ACCOUNT }}
